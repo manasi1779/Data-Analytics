@@ -1,0 +1,25 @@
+			Contributions of the Team Members
+
+
+
+
+Deepak : At the initial stage, He participated in the various round of discussion with his team and provide his inputs in the process of selecting a Dataset for the project. After we agreed upon Bank Marketing dataset,  He further investigated the dataset provide his inputs, how we will do data mining, integrate R with SQL and data cleaning. 
+        During performing preliminary data analysis. He observed the skewness in the target variable and missing values in various columns. He studied  the impact of skewness on the model and suggested that we should perform oversampling or down sampling for creating a model. He performed  chi-square to know about the importance of row containing missing values. 
+         He studied about various imputation methods and performed imputation using Knn method for missing values of "education" attribute, He removed rest of the rows with missing values from training set. Then he performed oversampling and downsampling using SMOTE (Synthetic Minority Over-sampling Technique) package for treating the skewness of the data. 
+        Then he also created random tree model with this cleaned data. He checked accuracy of the model on test dataset using ROC curve with shown 87% accuracy. He have explored imputation methods/packages like MICE, Amelia, missForest for improving the quality of imputation, He implemented KNN regression model for categorical model using knncat package. 
+        He also wrote or reviewed drafts for various  project report submission. 
+  
+
+
+Dipesh : Dipesh suggested some datasets for the project. He helped in writing the overview of the project. He also worked on attributes age , education , default , emp.var.rate , consumer price index , euribor and nr.employed.He also made the plots between attributes and target variable of the dataset.
+He also studied about the concepts of oversampling and downsampling and also shared his concepts with the team members.He also proposed how the attributes are related to each other and with the target variable. He also explored the dataset through R. He also identified and stated the ranks of the attributes of the dataset which helped in determining the important attributes of the dataset.
+He also looked up classification models for the dataset. He worked on fancy decision model and Neural Network model. He also suggested some research papers that can be made use of for the implementation of certain models. He also implemented these models on the dataset.
+In the report he did the citation part , made the tables and also contributed in writing some parts of the report. For the poster he made the final draft with the team, included the references and made the architecture diagram.
+        
+
+
+Manasi : Manasi identified another source for obtaining more data related to bank marketing's socio-economic aspect. This data was joined with the available data to obtain some highly correlated attributes with the output variable. She also worked on identifying best method for integrating database with the project. Entity-Relationship model was created to address atomicity and integrity of data. She proposed the use of sqlite as a database tool and tables were created in db file using sqlite connection as per the ER diagram.
+She analysed attributes using the correlation matrix and explored dataset in rattle user interface. She identified highly correlated attributes.
+She researched the classification models for choosing best model for Banking dataset which is skewed and has lot of instances. She further selected Associative rule based model to work on. She identified associative rules for output variable using apriori approach. Rules were later pruned to create subset of non-overlapping LHS rules.
+As for the report Manasi worked on creating initial draft of Architecture and High level Design. She addressed most of the formatting issues in the report.
+In the poster work she contributed by selecting the template, defining sections and initial draft of Architecture, Analysis and Design.

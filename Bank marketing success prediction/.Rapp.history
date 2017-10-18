@@ -1,0 +1,66 @@
+library(rattle)
+rattle()
+completeDataset<-read.csv("/Users/dipeshnainani/Downloads/DataMiningUsingR/bank-additional-full.csv",sep=",",header =TRUE )
+str(completeDataset)
+library(plyr)
+completeDataset$cons.price.idx <- round_any(completeDataset$cons.price.idx, accuracy = 0.01, f=floor)
+completeDataset$cons.price.idx<-gsub("[[:space:]]", "", completeDataset$cons.price.idx)
+completeDataset$cons.price.idx <- as.numeric(completeDataset$cons.price.idx)
+CPI.data<-read.csv(file="/Users/dipeshnainani/Downloads/DataMiningUsingR/CPI.csv",head=TRUE,sep=",")
+CPI.data$cons.price.idx<-gsub("[[:space:]]", "", CPI.data$cons.price.idx)
+CPI.data$cons.price.idx<-as.numeric(CPI.data$cons.price.idx)
+completeDataset<-join(completeDataset,CPI.data, by = "cons.price.idx", type = "left", match = "all")
+levels(completeDataset$job)
+completeDataset$age<-factor(completeDataset$age)
+set.seed(123)
+trainSize <- ceiling(0.8 * nrow(completeDataset))
+trainDataset_ind <- sample(seq_len(nrow(completeDataset)), size = trainSize)
+trainingDataSet <- completeDataset[trainDataset_ind, ]
+testingDataSet <- completeDataset[-trainDataset_ind, ]
+jobAndY=trainingDataSet[,c("job","y")]
+levels(jobAndY$job) <- c("known", "known", "known","known","known","known","known", "known", "known","known","known","unknown")
+contingencyTblJob = table(jobAndY$job, jobAndY$y)
+contingencyTblJob
+chisq.test(contingencyTblJob)
+eduAndY=trainingDataSet[,c("education","y")]
+levels(eduAndY$education) <- c("known", "known", "known","known", "known", "known","known","unknown")
+contingencyTblEdu = table(eduAndY$education, eduAndY$y)
+contingencyTblEdu
+chisq.test(contingencyTblEdu)
+marAndY=trainingDataSet[,c("marital","y")]
+levels(marAndY$marital) <- c("known", "known","known","unknown")
+contingencyTblMar = table(marAndY$marital, marAndY$y)
+contingencyTblMar
+chisq.test(contingencyTblMar)
+houseAndY=trainingDataSet[,c("housing","y")]
+levels(houseAndY$housing) <- c("known", "unknown","known")
+contingencyTblhouse = table(houseAndY$housing, houseAndY$y)
+contingencyTblhouse
+chisq.test(contingencyTblhouse)
+dfy<-trainingDataSet$y
+dfy.Ysub<-subset(dfy,dfy=="yes")
+dfy.Ysub<-factor(dfy.Ysub)
+dfy.Nsub<-subset(dfy,dfy=="no")
+dfy.Nsub<-factor(dfy.Nsub)
+chidf <- data.frame(#
+  chivariable = c("Yes", "No"),#
+  chivalue = c(length(dfy.Ysub), length(dfy.Nsub))#
+)
+loanAndY=trainingDataSet[,c("loan","y")]
+levels(loanAndY$loan) <- c("known", "unknown","known")
+contingencyTblloan = table(loanAndY$loan, loanAndY$y)
+contingencyTblloan
+chisq.test(contingencyTblloan)
+dev.off()
+ggplot(dfchi, aes(x = "", y = chivalue, fill = chivariable)) +#
+  geom_bar(width = 1, stat = "identity") +#
+  scale_fill_manual(chivalues = c("red", "green")) +#
+  coord_polar("y", start = pi / 3) +#
+  labs(title = "y")
+library(ggplot)
+library(ggplot2)
+ggplot(dfchi, aes(x = "", y = chivalue, fill = chivariable)) +#
+  geom_bar(width = 1, stat = "identity") +#
+  scale_fill_manual(chivalues = c("red", "green")) +#
+  coord_polar("y", start = pi / 3) +#
+  labs(title = "y")
